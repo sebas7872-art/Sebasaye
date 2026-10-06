@@ -1,0 +1,43 @@
+plugins { id 'com.android.application' }
+
+def signingNames = ['SANAVERA_KEYSTORE', 'SANAVERA_STORE_PASSWORD', 'SANAVERA_KEY_ALIAS', 'SANAVERA_KEY_PASSWORD']
+def hasSigning = signingNames.every { System.getenv(it) }
+
+android {
+    namespace 'app.ayelen.eqtest'
+    compileSdk 34
+    buildToolsVersion '35.0.0'
+    defaultConfig {
+        applicationId 'app.ayelen.eqtest'
+        minSdk 28
+        targetSdk 34
+        versionCode 12
+        versionName '1.0.0'
+    }
+    signingConfigs {
+        if (hasSigning) {
+            release {
+                storeFile file(System.getenv('SANAVERA_KEYSTORE'))
+                storePassword System.getenv('SANAVERA_STORE_PASSWORD')
+                keyAlias System.getenv('SANAVERA_KEY_ALIAS')
+                keyPassword System.getenv('SANAVERA_KEY_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (hasSigning) signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    testOptions { unitTests.includeAndroidResources = true }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.14.1'
+}

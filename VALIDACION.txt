@@ -1,0 +1,13 @@
+Sanavera EQ 1.0.0 (12)
+
+Compilación Gradle 8.9 / AGP 8.7.3 / JDK 17: assembleRelease OK.
+21 pruebas JUnit/Robolectric API 34 correctas en testDebugUnitTest.
+app.ayelen.eqtest.SimpleBandsTest: 6 OK
+app.ayelen.eqtest.VirtualizerRecoveryIntegrationTest: 11 OK
+app.ayelen.eqtest.SimpleUiTest: 4 OK
+
+Validado automáticamente: migración desde fixtures reales del formato 0.5.4; equivalencia de sus 32 ganancias; persistencia y presets; diálogo sin efectos al cancelar; frecuencias y ganancia independientes; orden y máximo 10; Flat/eliminar/restablecer; UI a 320, 360, 375 y 393 px; logo sin fondo en ambos temas; cierre/reapertura; ciclo de servicio; sesiones Spotify simuladas; corrección Motorola/NXP y ruta Samsung simuladas; controles rápidos sin reconstruir DynamicsProcessing.
+
+No se realizó prueba física de sonido, Bluetooth o Spotify. Comprobar en Samsung y Motorola: actualización sin borrar datos, cambio de canción, Virtualizer, SURROUND + EQ y servicio en segundo plano.
+
+Archivos de producción modificados: MainActivity.java, SimpleEqView.java, SoundState.java, SoundModel.java, EqResponse.java y EqService.java (detección de cambios Simple y versión). PNG y demás recursos conservados.
